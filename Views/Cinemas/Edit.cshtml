@@ -1,0 +1,85 @@
+﻿@model Cinema
+@{
+    ViewData["Title"] = "Update Cinema";
+}
+
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Add new Actor </h1>
+        </p>
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="text-center mb-3">
+                        <img id="LogoPreview" class="border border-info rounded-circle d-none" style="max-width: 150px;" alt="Profile Picture Preview" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Logo" class="form-label"></label>
+                        <input asp-for="Logo" class="form-control" />
+                        <span asp-validation-for="Logo" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Describtion" class="form-label"></label>
+                        <input asp-for="Describtion" class="form-control" />
+                        <span asp-validation-for="Describtion" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <input type="submit" value="Update" class="btn btn-outline-secondary" />
+
+                        <a class="btn btn-outline-success" asp-action="Index">Show All</a>
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get references to the elements
+            const output = document.getElementById('LogoPreview');
+            const profilePictureURLInput = document.getElementById('Logo');
+
+            if (profilePictureURLInput) {
+                // Check and update preview image visibility on load
+                updatePreviewVisibility();
+
+                // Update preview visibility and image source when the input value changes
+                profilePictureURLInput.addEventListener("input", updatePreviewVisibility);
+
+                function updatePreviewVisibility() {
+                    const url = profilePictureURLInput.value.trim();
+                    if (url) {
+                        output.src = url;
+                        output.classList.remove("d-none"); // Show the image
+                    } else {
+                        output.classList.add("d-none"); // Hide the image
+                        output.src = ""; // Clear the source
+                    }
+                }
+            }
+        });
+    </script>
+}
+
+
+
+

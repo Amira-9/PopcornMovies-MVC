@@ -1,0 +1,84 @@
+﻿@model Producer
+@{
+    ViewData["Title"] = "Add a new  Producer";
+}
+
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Add new Producer </h1>
+        </p>
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="text-center mb-3">
+                        <img id="ProfilePicturePreview" class="border border-info rounded-circle d-none" style="max-width: 150px;" alt="Profile Picture Preview" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ProfilePictureURL" class="form-label"></label>
+                        <input asp-for="ProfilePictureURL" class="form-control" />
+                        <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label"></label>
+                        <input asp-for="FullName" class="form-control" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Bio" class="form-label"></label>
+                        <input asp-for="Bio" class="form-control" />
+                        <span asp-validation-for="Bio" class="text-danger"></span> 
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a class="btn btn-outline-success" asp-action="Index">Show All</a>
+                        <input type="submit" value="Create" class="btn btn-outline-secondary" />
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get references to the elements
+            const output = document.getElementById('ProfilePicturePreview');
+            const profilePictureURLInput = document.getElementById('ProfilePictureURL');
+
+            if (profilePictureURLInput) {
+                // Check and update preview image visibility on load
+                updatePreviewVisibility();
+
+                // Update preview visibility and image source when the input value changes
+                profilePictureURLInput.addEventListener("input", updatePreviewVisibility);
+
+                function updatePreviewVisibility() {
+                    const url = profilePictureURLInput.value.trim();
+                    if (url) {
+                        output.src = url;
+                        output.classList.remove("d-none"); // Show the image
+                    } else {
+                        output.classList.add("d-none"); // Hide the image
+                        output.src = ""; // Clear the source
+                    }
+                }
+            }
+        });
+    </script>
+}
+
+
+
+
