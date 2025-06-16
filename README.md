@@ -1,6 +1,6 @@
 # Popcorn Movies 🎬🍿
 
-A web application built with ASP.NET Core MVC to manage and display movies.
+A web application built with ASP.NET Core MVC to manage, display movies and buy online tickets .
 
 ## Features
 - User registration & login
